@@ -1,7 +1,11 @@
-import cart from './cart'
+import item from './item'
+import containers from './containers'
+import publish from './publish'
 import { combineReducers } from 'redux'
 const rootReducer = combineReducers({
-  cart
+  item,
+  containers,
+  publish
 })
 
 export default rootReducer
