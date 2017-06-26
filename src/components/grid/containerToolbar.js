@@ -19,10 +19,10 @@ export default class ContainerToolbar extends Component {
           {size}
           <span className="glyphicon glyphicon-chevron-right" onClick={() => incrementWidth()}></span>
         </span>
-        {contains ? contains.name : "container default"}
-        <span className="delete" onClick={() => deleteContainer()}>[x]</span>
-        <span className="edit" onClick={() => toggleEditPanel()}>[edit]</span>
-        <span className="empty" onClick={() => emptyContainer()}>[empty]</span>
+        {contains ? contains.name : "empty"}
+        <span className="delete glyphicon glyphicon-remove" onClick={() => deleteContainer()}></span>
+        <span className="empty glyphicon glyphicon-trash" onClick={() => emptyContainer()}></span>
+        <span className="edit glyphicon glyphicon-info-sign" onClick={() => toggleEditPanel()}></span>
       </div>
     )
   }

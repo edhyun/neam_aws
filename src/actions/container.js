@@ -37,4 +37,4 @@ export const onBodyUpdate = (idx, body) => ({
   type: "bodyUpdate",
   idx,
   body
-})
+}) 

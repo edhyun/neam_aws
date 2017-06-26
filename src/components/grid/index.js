@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 import Container from './container'
 import FloatingPanel from './floatingPanel'
 import PublishedContainer from './publishedContainer'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import Editor from './editor'
+
 import * as containerActions from '../../actions/container'
 import * as firebaseActions from '../../actions/firebase'
 import * as publishActions from '../../actions/publish'
@@ -34,31 +37,38 @@ class Grid extends Component {
         </div>
       </div>
     ) : (
-      <div className="row">
-        <div className="col-xs-12">
-          <button className="btn btn-default" onClick={() => this.saveContainers()}>Save for later</button>
-          <button className="btn btn-default" onClick={() => this.previewModeOn()}>Preview</button>
-        </div>
-        <div className="col-sm-2">
-          <FloatingPanel />
-        </div>
-        <div className="col-sm-10 bodyContent">
-          {containers.map((container, idx) => 
-            <Container key={idx}
-              size={container.size}
-              onDrop={(item) => this.handleDrop(idx, item)}
-              contains={container.contains}
-              isOpenEditPanel={container.isOpenEditPanel}
-              emptyContainer={emptyContainer.bind(this, idx)}
-              deleteContainer={deleteContainer.bind(this, idx)}
-              toggleEditPanel={toggleEditPanel.bind(this, idx)}
-              incrementWidth={incrementWidth.bind(this, idx)}
-              decrementWidth={decrementWidth.bind(this, idx)}
-              onBodyUpdate={onBodyUpdate.bind(this, idx)}
-            />
-          )}
+      <div className="container">
+        <div className="row">
           <div className="col-xs-12">
-            <button className="btn btn-primary" onClick={() => addContainer()}>Add New Conainer</button>
+            <button className="btn btn-default" onClick={() => this.saveContainers()}>Save for later</button>
+            <button className="btn btn-default" onClick={() => this.previewModeOn()}>Preview</button>
+          </div>
+          <div className="col-xs-12">
+            <FloatingPanel />
+          </div>
+          <div className="col-sm-6 bodyContent">
+            {containers.map((container, idx) => 
+              <Container key={idx}
+                size={container.size}
+                onDrop={(item) => this.handleDrop(idx, item)}
+                contains={container.contains}
+                isOpenEditPanel={container.isOpenEditPanel}
+                emptyContainer={emptyContainer.bind(this, idx)}
+                deleteContainer={deleteContainer.bind(this, idx)}
+                toggleEditPanel={toggleEditPanel.bind(this, idx)}
+                incrementWidth={incrementWidth.bind(this, idx)}
+                decrementWidth={decrementWidth.bind(this, idx)}
+                onBodyUpdate={onBodyUpdate.bind(this, idx)}
+              />
+            )}
+            <div className="col-xs-12">
+              <button className="btn btn-primary" onClick={() => addContainer()}>Add New Conainer</button>
+            </div>
+          </div>
+          <div className="col-sm-6">
+            <div className="textField">
+              <Editor />
+            </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { DropTarget } from 'react-dnd'
 import Empty from './contents/empty'
 import Text from './contents/text'
+import Image from './contents/image'
 import ContainerToolbar from './containerToolbar'
 import EditPanel from './editPanel'
 
@@ -60,6 +61,8 @@ class Container extends Component {
       content = <Empty />
     } else if (contains.type === "text") {
       content = <Text onBodyUpdate={onBodyUpdate} />
+    } else if (contains.type === "image") {
+      content = <Image />
     }
 
     return connectDropTarget(
